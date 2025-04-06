@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINE 貼圖商店</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="/assets/favicon.jpg" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <button class="mobile-menu-btn" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="#hero" class="nav-item">首頁</a>
+                <a href="#recent" class="nav-item">近期更新</a>
+                <a href="#all-stickers" class="nav-item">全部貼圖</a>
+                <a href="#contact" class="nav-item">聯絡我們</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>可愛貼圖收藏</h1>
+            <p>精選優質 LINE 貼圖，讓你的對話更有趣！</p>
+            <div class="hero-image">
+                <img src="/assets/01/guegue05.png" alt="精選貼圖">
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Updates Section -->
+    <section id="recent" class="recent-updates">
+        <h2>近期更新</h2>
+        <div class="updates-container">
+            <div class="updates-content">
+                <div class="updates-text">
+                    <h2 class="update-title">最新貼圖</h2>
+                    <p class="update-description">可愛動物系列</p>
+                </div>
+                <div class="updates-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Stickers Section -->
+    <section id="all-stickers" class="all-stickers">
+        <h2>全部貼圖</h2>
+        <div class="stickers-grid">
+            <!-- Sticker items will be dynamically added here -->
+        </div>
+        <div class="pagination">
+            <button class="prev-page">上一頁</button>
+            <span class="page-numbers">1 / 5</span>
+            <button class="next-page">下一頁</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="footer-content">
+            <p>Copyright 2025 kais. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
