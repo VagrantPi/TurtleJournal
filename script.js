@@ -49,31 +49,31 @@ const recentUpdates = [
     {
         title: "龜龜日記01 - 黏黏怪",
         description: "問題來，就來扛！",
-        image: "/assets/01/guegue03.png",
+        image: "/TurtleJournal/assets/01/guegue03.png",
         link: "https://store.line.me/stickershop/showcase/top/zh-Hant"
     },
     {
         title: "龜龜日記01 - 黏黏怪",
         description: "嘎你抱緊緊！",
-        image: "/assets/01/guegue01.png",
+        image: "/TurtleJournal/assets/01/guegue01.png",
         link: "https://store.line.me/stickershop/showcase/top/zh-Hant"
     },
     {
         title: "龜龜日記01 - 黏黏怪",
         description: "爸爸買給你！",
-        image: "/assets/01/guegue04.png",
+        image: "/TurtleJournal/assets/01/guegue04.png",
         link: "https://store.line.me/stickershop/showcase/top/zh-Hant"
     },
     {
         title: "龜龜日記01 - 黏黏怪",
         description: "球球尼～",
-        image: "/assets/01/guegue10.png",
+        image: "/TurtleJournal/assets/01/guegue10.png",
         link: "https://store.line.me/stickershop/showcase/top/zh-Hant"
     },
     {
         title: "龜龜日記01 - 黏黏怪",
         description: "巴豆夭！",
-        image: "/assets/01/guegue11.png",
+        image: "/TurtleJournal/assets/01/guegue11.png",
         link: "https://store.line.me/stickershop/showcase/top/zh-Hant"
     }
 ];
@@ -161,7 +161,7 @@ createRecentUpdatesScrollTrigger();
 const stickers = [{
     id: 1,
     title: `龜龜日記01 - 黏黏怪`,
-    image: `/assets/01/guegue05.png`,
+    image: `/TurtleJournal/assets/01/guegue05.png`,
     link: "https://store.line.me/stickershop/showcase/top/zh-Hant"
 }]
 
