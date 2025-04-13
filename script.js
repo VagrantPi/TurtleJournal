@@ -11,8 +11,10 @@ function initCirclePosition() {
     const viewportHeight = window.innerHeight;
     
     // Generate random position but avoid too close to edges
-    const circleX = Math.max(100, Math.min(viewportWidth - 100, Math.random() * viewportWidth));
-    const circleY = Math.max(100, Math.min(viewportHeight - 100, Math.random() * viewportHeight));
+    // const circleX = Math.max(100, Math.min(viewportWidth - 100, Math.random() * viewportWidth));
+    // const circleY = Math.max(100, Math.min(viewportHeight - 100, Math.random() * viewportHeight));
+    const circleX = viewportWidth / 2
+    const circleY = viewportHeight / 2
     
     circleMask.style.left = `${circleX}px`;
     circleMask.style.top = `${circleY}px`;
@@ -183,6 +185,7 @@ function createRecentUpdatesScrollTrigger() {
     recentUpdates.forEach((update, index) => {
         const updateContent = document.createElement('div');
         updateContent.className = 'updates-content';
+        updateContent.style.opacity = '0';
         updateContent.innerHTML = `
             <div class="updates-text">
                 <h2 class="update-title">${update.title}</h2>
@@ -312,3 +315,72 @@ gsap.from(".hero-image", {
     delay: 1,
     ease: "back.out(1.7)"
 }); 
+
+// load 進頁面跳到最上方
+window.addEventListener("load", () => {
+    gsap.to(window, {
+        duration: 0.8,
+        scrollTo: {y: 0},
+        ease: "power2.out"
+    });
+});
+
+// Scroll to top function
+function scrollToTop() {
+    gsap.to(window, {
+        duration: 1,
+        scrollTo: 0,
+        ease: "power2.inOut"
+    });
+}
+
+// Add event listener for scroll down arrow
+const arrow = document.querySelector('.arrow');
+const arrowContainer = document.querySelector('.arrow-container');
+
+// 創建時間軸
+const tl = gsap.timeline({
+    repeat: -1,
+    yoyo: false,
+    paused: true  // 初始暫停動畫
+});
+
+// 添加浮動效果
+tl.to(arrow, {
+    y: -15,
+    duration: 1.2,
+    ease: "power1.inOut"
+})
+.to(arrow, {
+    y: 0,
+    duration: 1.2,
+    ease: "power1.inOut"
+});
+
+// 監聽滾動事件來控制箭頭的顯示/隱藏
+window.addEventListener('scroll', () => {
+    const footer = document.querySelector('#all-stickers');
+    const footerTop = footer.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    
+    // 如果滾動到最後一個區塊（footer）的頂部，隱藏箭頭
+    if (footerTop <= windowHeight * 0.5) {
+        gsap.to(arrowContainer, {
+            opacity: 0,
+            pointerEvents: 'none',
+            duration: 0.5,
+            ease: 'power1.out'
+        });
+        tl.pause();
+    } else {
+        gsap.to(arrowContainer, {
+            opacity: 1,
+            pointerEvents: 'auto',
+            duration: 0.5,
+            ease: 'power1.out'
+        });
+        tl.play();
+    }
+});
+            
+            
