@@ -1,6 +1,88 @@
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
+// Initialize circle mask
+const circleMask = document.querySelector('.circle-mask');
+const heroSection = document.querySelector('.hero');
+
+
+function initCirclePosition() {
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    
+    // Generate random position but avoid too close to edges
+    const circleX = Math.max(100, Math.min(viewportWidth - 100, Math.random() * viewportWidth));
+    const circleY = Math.max(100, Math.min(viewportHeight - 100, Math.random() * viewportHeight));
+    
+    circleMask.style.left = `${circleX}px`;
+    circleMask.style.top = `${circleY}px`;
+    
+    // Calculate maximum radius (ensure it can cover the entire screen)
+    const topLeft = Math.sqrt(circleX * circleX + circleY * circleY);
+    const topRight = Math.sqrt((viewportWidth - circleX) * (viewportWidth - circleX) + circleY * circleY);
+    const bottomLeft = Math.sqrt(circleX * circleX + (viewportHeight - circleY) * (viewportHeight - circleY));
+    const bottomRight = Math.sqrt((viewportWidth - circleX) * (viewportWidth - circleX) + (viewportHeight - circleY) * (viewportHeight - circleY));
+    
+    const maxRadius = Math.max(topLeft, topRight, bottomLeft, bottomRight) * 1.1;
+    
+    circleMask.style.width = `${maxRadius * 2}px`;
+    circleMask.style.height = `${maxRadius * 2}px`;
+    circleMask.style.marginLeft = `-${maxRadius}px`;
+    circleMask.style.marginTop = `-${maxRadius}px`;
+    
+    return maxRadius;
+}
+
+// Initialize circle mask position
+initCirclePosition();
+
+// Handle window resize
+window.addEventListener('resize', function() {
+    initCirclePosition();
+});
+
+// Handle scroll event
+let lastScrollTop = 0;
+window.addEventListener('scroll', function() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    
+    // 計算圓形遮罩的縮放和透明度
+    const scrollPercentage = Math.min(scrollTop / windowHeight, 1);
+    const opacity = 1 - Math.min((scrollTop - windowHeight) / windowHeight, 1);
+    
+    circleMask.style.transform = `scale(${scrollPercentage})`;
+    circleMask.style.opacity = `${opacity}`;
+    
+    // 顯示/隱藏遮罩
+    if (scrollPercentage > 0.1) {
+        circleMask.classList.add('active');
+    } else {
+        circleMask.classList.remove('active');
+    }
+    
+    // 處理 hero 區域的可見性
+    if (scrollPercentage >= 1) {
+        heroSection.style.visibility = 'hidden';
+        heroSection.style.position = 'absolute';
+        heroSection.style.top = `${windowHeight}px`;
+    } else {
+        heroSection.style.visibility = 'visible';
+        heroSection.style.position = 'fixed';
+        heroSection.style.top = '0';
+    }
+    
+    // 確保所有區塊都可見
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        section.style.visibility = 'visible';
+    });
+    
+    lastScrollTop = scrollTop;
+});
+
+
+
 // Smooth scroll for navbar links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -105,7 +187,7 @@ function createRecentUpdatesScrollTrigger() {
             <div class="updates-text">
                 <h2 class="update-title">${update.title}</h2>
                 <p class="update-description">${update.description}</p>
-                <button class="button" onclick="window.open('${update.link}', '_blank')">購買</button>
+                <button class="button" type="button" onclick="window.open('${update.link}', '_blank');">購買</button>
             </div>
             <div class="updates-image">
                 <img src="${update.image}" alt="${update.title}">
