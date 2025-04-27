@@ -134,31 +134,31 @@ const recentUpdates = [
         title: "龜龜日記01 - 黏黏怪",
         description: "問題來，就來扛！",
         image: "/TurtleJournal/assets/01/guegue03.png",
-        link: "https://store.line.me/stickershop/showcase/top/zh-Hant"
+        link: "https://line.me/S/sticker/30445927"
     },
     {
         title: "龜龜日記01 - 黏黏怪",
         description: "嘎你抱緊緊！",
         image: "/TurtleJournal/assets/01/guegue01.png",
-        link: "https://store.line.me/stickershop/showcase/top/zh-Hant"
+        link: "https://line.me/S/sticker/30445927"
     },
     {
         title: "龜龜日記01 - 黏黏怪",
         description: "爸爸買給你！",
         image: "/TurtleJournal/assets/01/guegue04.png",
-        link: "https://store.line.me/stickershop/showcase/top/zh-Hant"
+        link: "https://line.me/S/sticker/30445927"
     },
     {
         title: "龜龜日記01 - 黏黏怪",
         description: "球球尼～",
         image: "/TurtleJournal/assets/01/guegue10.png",
-        link: "https://store.line.me/stickershop/showcase/top/zh-Hant"
+        link: "https://line.me/S/sticker/30445927"
     },
     {
         title: "龜龜日記01 - 黏黏怪",
         description: "巴豆夭！",
         image: "/TurtleJournal/assets/01/guegue11.png",
-        link: "https://store.line.me/stickershop/showcase/top/zh-Hant"
+        link: "https://line.me/S/sticker/30445927"
     }
 ];
 
@@ -208,7 +208,13 @@ function createRecentUpdatesScrollTrigger() {
                     opacity: 1,
                     y: 0,
                     duration: 0.5,
-                    ease: "power2.out"
+                    ease: "power2.out",
+                    onComplete: () => {
+                        // 動畫完成後，同步點擊區域
+                        updateContent.style.position = 'absolute';
+                        updateContent.style.top = '50%'; // 根據你的設計調整
+                        updateContent.style.transform = 'translate(-50%, -50%)'; // 確保居中
+                    }
                 });
             },
             onLeave: () => {
@@ -224,7 +230,12 @@ function createRecentUpdatesScrollTrigger() {
                     opacity: 1,
                     y: 0,
                     duration: 0.5,
-                    ease: "power2.out"
+                    ease: "power2.out",
+                    onComplete: () => {
+                        updateContent.style.position = 'absolute';
+                        updateContent.style.top = '50%';
+                        updateContent.style.transform = 'translate(-50%, -50%)';
+                    }
                 });
             },
             onLeaveBack: () => {
@@ -247,7 +258,7 @@ const stickers = [{
     id: 1,
     title: `龜龜日記01 - 黏黏怪`,
     image: `/TurtleJournal/assets/01/guegue05.png`,
-    link: "https://store.line.me/stickershop/showcase/top/zh-Hant"
+    link: "https://line.me/S/sticker/30445927"
 }]
 
 const stickersPerPage = 10;

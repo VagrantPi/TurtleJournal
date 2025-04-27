@@ -167,17 +167,20 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center; /* 確保內容居中 */
 }
 
 .updates-content {
     position: absolute;
+    top: 50%; /* 初始居中 */
+    left: 50%;
+    transform: translate(-50%, -50%); /* 初始居中 */
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
     opacity: 0;
-    transform: translateY(100px);
     background: white;
     padding: 2rem;
     border-radius: 20px;
@@ -303,6 +306,8 @@ body {
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
+    display: inline-block;
+    position: relative; /* 確保按鈕不會被其他定位影響 */
 }
 
 .updates-text button:hover {
